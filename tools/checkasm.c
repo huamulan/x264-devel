@@ -2444,11 +2444,6 @@ static int check_all_flags( void )
         ret |= add_flags( &cpu0, &cpu1, X264_CPU_FMA4, "FMA4" );
         cpu1 &= ~X264_CPU_FMA4;
     }
-    if( x264_cpu_detect() & X264_CPU_FMA3 )
-    {
-        ret |= add_flags( &cpu0, &cpu1, X264_CPU_FMA3, "FMA3" );
-        cpu1 &= ~X264_CPU_FMA3;
-    }
     if( x264_cpu_detect() & X264_CPU_BMI1 )
     {
         ret |= add_flags( &cpu0, &cpu1, X264_CPU_BMI1, "BMI1" );
@@ -2466,6 +2461,11 @@ static int check_all_flags( void )
     }
     if( x264_cpu_detect() & X264_CPU_AVX2 )
         ret |= add_flags( &cpu0, &cpu1, X264_CPU_AVX2, "AVX2" );
+    if( x264_cpu_detect() & X264_CPU_FMA3 )
+    {
+        ret |= add_flags( &cpu0, &cpu1, X264_CPU_FMA3, "FMA3" );
+        cpu1 &= ~X264_CPU_FMA3;
+    }
 #elif ARCH_PPC
     if( x264_cpu_detect() & X264_CPU_ALTIVEC )
     {
